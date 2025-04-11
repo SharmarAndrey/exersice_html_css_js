@@ -94,7 +94,7 @@ let mediumAge = [...users].reduce((acc, user) => acc + user.age, 0);
 mediumAge = mediumAge / users.length;
 console.log(mediumAge);
  */
-const cities = ["Москва", "Барселона", "Берлин"];
+/* const cities = ["Москва", "Барселона", "Берлин"];
 const greedCity = cities.map((city) => `Привет,  ${city} !`);
 console.log(greedCity);
 
@@ -107,18 +107,84 @@ const users = [
   { name: "Ирина", age: 35 },
   { name: "Максим", age: 17 },
   { name: "Ольга", age: 28 },
-  { name: "Сергей", age: 16 },
-];
+  { name: "Сергей", age: 19 },
+]; */
 
-const adults = users.filter((user) => user.age >= 18).map((user) => user.name);
-console.log("adults", adults);
+/* const adults = users.filter((user) => user.age >= 18).map((user) => user.name);
+console.log("adults", adults); */
 
 /* const adultsNames = adults.map((adult) => adult.name);
 console.log("adultsNames", adultsNames);
  */
-
+/* 
 const findUser = users.find((user) => user.name === "Ольга");
 console.log("Find User ", findUser);
 
 const youngest = users.find((user) => user.age < 30);
-console.log("youngest", youngest);
+console.log("youngest", youngest); */
+
+/* const youngerUsers = users
+  .filter((user) => user.age < 30)
+  .map((user) => user.name);
+
+console.log("Usera < 30: ", youngerUsers);
+
+const findByCaracter = users.find((user) => user.name.startsWith("И"));
+
+console.log("findByCaracter", findByCaracter);
+
+const longestNames = users
+  .filter((user) => user.name.length > 5)
+  .map((user) => user.name);
+console.log("longestNames", longestNames); */
+
+//Control exercise (map, filter, find)
+
+const users = [
+  { name: "Андрей", age: 42 },
+  { name: "Ирина", age: 35 },
+  { name: "Максим", age: 17 },
+  { name: "Ольга", age: 28 },
+  { name: "Сергей", age: 19 },
+  { name: "Игорь", age: 25 },
+];
+
+//Get an array of names all users
+//👉 Usemap()
+
+const allNames = users.map((user) => user.name);
+
+console.log("allNames", allNames);
+
+/* Get an array of objects of those under 20 years old
+👉 Use Filter () */
+
+const usersUnder20Years = users.filter((user) => user.age < 20);
+
+console.log("userUnder20Years", usersUnder20Years);
+
+/* 
+🔍 Найди пользователя, чьё имя начинается на "И" и возраст меньше 30
+👉 Используй find() + startsWith() + && */
+
+const userNameunder30 = users.find(
+  (user) => user.name.startsWith("И") && user.age < 30,
+);
+
+console.log("userNameunder30", userNameunder30);
+
+/* Get an array of lengths of all users
+👉 Example: ["Andrey", "Irina"] → [6, 5]
+👉 Use map() + name.length */
+
+const nameLengths = users.map((user) => user.name.length);
+console.log("nameLengths", nameLengths);
+
+/* 🧑‍🏫 Get the names of adults (18+) in the upper register
+👉 Example: ["Olga", "Sergey"]
+👉 Use Filter () + Map () + .touppercase () */
+
+const adultNames = users
+  .filter((user) => user.age >= 18)
+  .map((user) => user.name.toUpperCase());
+console.log("adultNames", adultNames);
