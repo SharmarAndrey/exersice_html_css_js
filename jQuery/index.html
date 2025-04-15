@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <p class="note">The first paragraph</p>
+      <p>The second paragraph</p>
+      <div>
+        <p class="note">The invested paragraph</p>
+      </div>
+    </div>
+
+    <!--   <h1 id="header">Hello!</h1>
+    <p class="note">This is an important paragraph</p>
+    <p>Paragraph</p> -->
+    <!--  <header id="header">Hola jQuery!!!</header>
+    <div class="note">
+      <p>Lorem ipsum dolor sit amet.</p>
+      <span>Lorem ipsum dolor sit amet.</span
+      ><span>Lorem ipsum dolor sit amet.</span
+      ><span>Lorem ipsum dolor sit amet.</span>
+    </div>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
+      perferendis, consequatur inventore, nesciunt, commodi odio aut alias autem
+      ipsa amet debitis nulla libero qui velit repudiandae incidunt. Alias,
+      numquam sequi.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+      distinctio consectetur corporis nemo. Minima eligendi sunt quam
+      doloremque, maxime laboriosam aut possimus id eum? Delectus perspiciatis
+      harum enim architecto. Commodi!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+      commodi doloremque maiores enim ut velit natus est optio, voluptatum
+      architecto quisquam error vel tenetur porro quia illum vitae pariatur
+      exercitationem!
+    </p>
+    <ul>
+      <li>element1</li>
+      <li>element2</li>
+      <li>element3</li>
+    </ul>
+
+    <a href="#">Link1</a>
+    <a href="#" target="_blank">Link2</a>
+    <a href="#">Link3</a>
+    <a href="#" target="_blank">Link4</a>
+
+    <input type="text" name="login" placeholder="Login" />
+    <input type="text" name="password" placeholder="Password" /> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      //Hide all the paragraphs on the page:
+
+      /*  $("p").hide(); */
+
+      //  Change the text of the element from ID header:
+
+      /*    $("header").css("color", "red");
+
+      // Choose all  <span> inside <div class="note">:
+      $(".note span").css("color", "blue");
+
+      //Change the background of the first element of the list:
+
+      $("ul li:first").css("background-color", "green");
+
+      // Sile up all the links open in the new window:
+      $("a[target='_blank']").css("color", "red");
+
+      //Hide all the inputs whose name begins on Login:
+      $("input[name = 'login']").hide();
+
+      // Hide even elements of the list:
+      $("li:even").hide();
+
+      // Cross all the elements with the .item class and add the number to them:
+      $(".item").each(function (index) {
+        $(this).text(index + 1);
+      });
+
+      //Burning the handle on elements that are not yet in DOM
+      $(document).on("click", "dinamic-button", function () {
+        alert("Button was clicked dinamic");
+      }); */
+
+      /*     //  Hide everything .
+      $("p").hide();
+      //Change the text #header to “Welcome!”.
+      $("#header").text("Welcome!");
+      //Change the color .note to red.
+      $(".note").css("color", "red"); */
+
+      //  Change the text of all .note inside #Container to "Changed!"
+
+      $("#container .note").text("Changed!");
+
+      //Change the color of the second paragraph (regardless of the class) to blue.
+
+      $("#container p:eq(1)").css("color", "blue");
+
+      //Hide the nested .note (inside inside #Container).
+
+      $("#container>div .note").hide();
+    </script>
+  </body>
+</html>
