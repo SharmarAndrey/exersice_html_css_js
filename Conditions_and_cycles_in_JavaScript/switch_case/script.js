@@ -67,7 +67,7 @@ Make the GreetByrole (Role) function, which:
 "Student"   ----   good luck in study, student!
 Any other   ----   role is not recognized */
 
-const greetByRole = (role) => {
+/* const greetByRole = (role) => {
   switch (role.toLowerCase()) {
     case "admin":
       return "Hello, admin!";
@@ -85,4 +85,34 @@ const greetByRole = (role) => {
 };
 
 const input = prompt("Enter your role");
-alert(greetByRole(input));
+alert(greetByRole(input)); */
+
+/* Task: to determine the category of a ticket by age
+Make a GetticticetCategory function (Age), which returns by age: */
+
+/* Age category
+0 - 5 free
+6 - 17 children's ticket
+18 - 59 adult ticket
+60 and more - retirement ticket
+Other (NaN, <0) incorrect age */
+
+const getTicketCategory = (age) => {
+  age = parseInt(age);
+  /* if (isNaN(age) || age < 0) return "Invalid age"; */
+  switch (true) {
+    case age > 0 && age <= 5:
+      return "Free";
+    case age >= 6 && age <= 17:
+      return "Chidren's ticket";
+    case age >= 18 && age <= 59:
+      return "Adult ticket";
+    case age >= 60:
+      return "Senior ticket";
+    default:
+      return "There is not true age";
+  }
+};
+
+const userAge = prompt("Enter your age");
+alert(getTicketCategory(userAge));
