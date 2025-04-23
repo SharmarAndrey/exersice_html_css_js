@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de gripos y miembros</title>
+  </head>
+  <body>
+    <h1>Grupos y miembros</h1>
+    <div id="containerOfGrupos"></div>
+    <button id="btnmayores">Monstrar solo mayores de edad</button>
+    <script>
+      const grupos = [
+        {
+          nombre: "Frontend",
+          miembros: [
+            { nombre: "Andrés", edad: 42 },
+            { nombre: "Irina", edad: 28 },
+          ],
+        },
+        {
+          nombre: "Backend",
+          miembros: [
+            { nombre: "Sergio", edad: 33 },
+            { nombre: "Max", edad: 17 },
+          ],
+        },
+      ];
+
+      function renderGrupos(grupos) {
+        const contenedor = document.getElementById("containerOfGrupos");
+        contenedor.innerHTML = "";
+
+        for (let grup of grupos) {
+          const cabeceroGrupo = document.createElement("h2");
+          cabeceroGrupo.classList.add("cabeceroGrupo");
+          cabeceroGrupo.textContent = `Grupo: ${grup.nombre} `;
+
+          const contenedorGrupo = document.createElement("div");
+
+          for (let miembro of grup.miembros) {
+            const p = document.createElement("p");
+            p.textContent = `Name: ${miembro.nombre} - Age: ${miembro.edad}`; //`miembro.nombre + miembro.edad;
+            contenedorGrupo.appendChild(p);
+          }
+
+          contenedor.appendChild(cabeceroGrupo);
+          contenedor.appendChild(contenedorGrupo);
+        }
+      }
+      renderGrupos(grupos);
+      const filtrarMayores = (grupos) => {
+        return grupos.map((grupo) => {
+          return {
+            nombre: grupo.nombre,
+            miembros: grupo.miembros.filter((miembro) => miembro.edad >= 18),
+          };
+        });
+      };
+
+      document.getElementById("btnmayores").addEventListener("click", () => {
+        const mayores = filtrarMayores(grupos);
+        renderGrupos(mayores);
+      });
+    </script>
+  </body>
+</html>
