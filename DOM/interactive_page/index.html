@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Page</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        border: 1px solid black;
+        width: 600px;
+      }
+      input {
+        margin: 10px;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        width: 80%;
+        background-color: chocolate;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: darkgoldenrod;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>First DOM project</h1>
+
+      <input type="text" name="input" placeholder="Enter some text" />
+
+      <button type="button" id="greet">Greet</button>
+      <button type="reset" id="reset">Reset</button>
+      <p></p>
+    </div>
+    <script>
+      const greet = document.querySelector("#greet");
+
+      const input = document.querySelector("input");
+      const p = document.querySelector("p");
+
+      greet.addEventListener("click", () => {
+        p.textContent = `Hello ${input.value}!`;
+      });
+
+      const reset = document.querySelector("#reset");
+
+      reset.addEventListener("click", () => {
+        input.value = "";
+        p.textContent = "";
+        input.focus();
+      });
+      input.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+          greet.click();
+        }
+      });
+      document.body.addEventListener("keyup", (event) => {
+        if (event.key.toLowerCase() === "r") reset.click();
+      });
+    </script>
+  </body>
+</html>

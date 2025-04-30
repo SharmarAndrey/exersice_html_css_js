@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        border: 1px solid black;
+        width: 600px;
+      }
+      input {
+        margin: 10px;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        width: 80%;
+        background-color: chocolate;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: darkgoldenrod;
+      }
+      #taskList {
+        width: 80%;
+        padding: 0;
+      }
+      #taskList li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f0f0f0;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 4px;
+      }
+      #taskList li button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        width: auto;
+      }
+      #taskList li button:hover {
+        background-color: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" name="input" placeholder="Enter new task" />
+      <button type="button" id="addTask">Add Task</button>
+      <ol id="taskList"></ol>
+      <button type="button" id="clearAll">Clear all Tasks</button>
+    </div>
+
+    <script>
+      const input = document.querySelector("input");
+      const addTask = document.querySelector("#addTask");
+      const taskList = document.querySelector("#taskList");
+      const clearAll = document.querySelector("#clearAll");
+
+      function addNewTask() {
+        const text = input.value;
+        const trimmed = text.trim();
+        if (trimmed === "") return;
+
+        const tasks = Array.from(taskList.children);
+        const isDuplicate = tasks.some((li) => {
+          const span = li.querySelector("span");
+          if (!span) return false;
+
+          const existingText = span.textContent.replace(/^\d+\.\s*/, "");
+          return existingText === trimmed;
+        });
+
+        if (isDuplicate) return;
+
+        const taskNumber = taskList.children.length + 1;
+
+        const task = document.createElement("li");
+
+        const span = document.createElement("span");
+        span.textContent = `${taskNumber}. ${trimmed}`;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "X";
+        deleteButton.addEventListener("click", () => {
+          task.remove();
+          updateTaskNumbers();
+        });
+
+        task.appendChild(span);
+        task.appendChild(deleteButton);
+        taskList.appendChild(task);
+
+        input.value = "";
+        input.focus();
+      }
+
+      addTask.addEventListener("click", addNewTask);
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          addNewTask();
+        }
+      });
+
+      clearAll.addEventListener("click", () => {
+        taskList.innerHTML = "";
+      });
+      function updateTaskNumbers() {
+        const tasks = Array.from(taskList.children);
+        tasks.forEach((li, index) => {
+          const span = li.querySelector("span");
+          if (span) {
+            const text = span.textContent.replace(/^\d+\.\s*/, "");
+            span.textContent = `${index + 1}. ${text}`;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
