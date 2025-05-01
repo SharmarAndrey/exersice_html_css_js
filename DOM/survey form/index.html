@@ -19,6 +19,9 @@
         padding: 20px;
         border-radius: 5px;
       }
+      .wrapper {
+        margin-bottom: 8px;
+      }
     </style>
   </head>
   <body></body>
@@ -75,8 +78,9 @@
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         const selected = document.querySelector(`input:checked`);
-        const color = selected.value;
+
         if (selected) {
+          const color = selected.value;
           const textColor = `${color}`;
           result.textContent = `Your favorite color is :   ${color}`;
           result.style.color = color;
