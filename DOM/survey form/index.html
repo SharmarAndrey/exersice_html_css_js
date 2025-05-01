@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey form</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 80vh;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body></body>
+  <script>
+    const answers = ["red", "green", "blue"];
+    function createForm() {
+      const container = document.createElement("div");
+      container.classList.add("container");
+      document.body.appendChild(container);
+
+      const form = document.createElement("form");
+      form.id = "surveyForm";
+      form.action = "#";
+      form.method = "post";
+      container.appendChild(form);
+
+      const question = document.createElement("p");
+      question.id = "question";
+      question.textContent = "Choose your favorite color";
+      form.appendChild(question);
+
+      answers.forEach((color) => {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "color";
+        input.value = color;
+        input.id = color;
+
+        const label = document.createElement("label");
+        label.classList.add("label");
+        label.htmlFor = color;
+        label.textContent = color;
+
+        form.appendChild(wrapper);
+        wrapper.appendChild(input);
+        wrapper.appendChild(label);
+      });
+
+      const submit = document.createElement("button");
+      submit.id = "submit";
+      submit.type = "submit";
+      submit.textContent = "Submit";
+      form.appendChild(submit);
+
+      const result = document.createElement("p");
+      result.textContent = "";
+      result.id = "result";
+
+      form.appendChild(result);
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const selected = document.querySelector(`input:checked`);
+        const color = selected.value;
+        if (selected) {
+          const textColor = `${color}`;
+          result.textContent = `Your favorite color is :   ${color}`;
+          result.style.color = color;
+          /*  form.style.backgroundColor = color; */
+        } else {
+          result.textContent = "Please select a color.";
+        }
+      });
+    }
+    createForm();
+  </script>
+</html>
